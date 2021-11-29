@@ -67,8 +67,11 @@ img{
     margin-left: 10px;
     
 }
-
 div>[actions]{
     display: flex;
     justify-content: right;
+}
+.blur{
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
 }
