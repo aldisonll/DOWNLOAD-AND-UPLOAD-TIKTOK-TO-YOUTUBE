@@ -141,6 +141,13 @@ function showYoutubeModal(id){
         border-radius: 3px;
         color: white;
         margin-top: 10px;
+        font-size: 12px;
+    `
+    final_upload_mouseOver_style = `
+        this.style.fontSize = '13px';
+    `
+    final_upload_mouseOut_style = `
+        this.style.fontSize = '12px';
     `
 
     html = `
@@ -155,10 +162,10 @@ function showYoutubeModal(id){
                 <h4>Description</h4>
                 <textarea style="${description_style}" description placeholder="hello world">${description}\n\n${credit}</textarea>
                 <div style="${tags_container_style}" tags-container>
-                    <h4>tags</h4><button style="${gen_tags_style}" gen-tags>Generate Tags</button>
+                    <h4>tags</h4><button style="${gen_tags_style}" onclick=generateTags() gen-tags>Generate Tags</button>
                 </div>
                 <input style="${tags_style}" tags placeholder="#tag1 #tag2" type="text"/>
-                <button style="${final_upload_style}" final-upload>Upload Video ✔</button>
+                <button style="${final_upload_style}" onmouseover="${final_upload_mouseOver_style}" onmouseout="${final_upload_mouseOut_style}" final-upload>Upload Video ✔</button>
             </div>
         </div>
     `
@@ -180,4 +187,29 @@ function removeVideo(id){
         } 
     })
 
+}
+
+function generateTags(){
+    
+    var inputTagVal = $('input[tags]').value
+
+    if(inputTagVal.length > 0 && inputTagVal.replaceAll(' ', '').length > 0){
+        $('[gen-tags]').innerText = 'Generating Tags...'
+        fetch(`${apiUrl}/api/tags-suggestions?query=${inputTagVal}`).then(
+            data => data.json()
+        ).then(response => {
+            if(response.status == "ok"){
+                var inp = ''
+                response.tags.map((tag)=>{
+                    inp += tag + ','
+                })
+
+                $('input[tags]').value = inp.slice(0, -1)
+                $('[gen-tags]').innerText = 'Generate Tags'
+            } else {
+                $('[gen-tags]').innerText = 'Generate Tags'
+            }
+        })
+    }
+    
 }

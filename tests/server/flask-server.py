@@ -10,8 +10,10 @@ sys.path.insert(0,'../..') # parent-parent path
 
 from tikTokDownloader import TikTokDownloader
 from VideoDb import VideoDB
+from youtubeSearchSuggestions import YouTubeTagGenerator
 
 tiktok = TikTokDownloader()
+Tags = YouTubeTagGenerator()
 
 @app.route('/index.html')
 @app.route('/')
@@ -32,7 +34,7 @@ def downloaded_videos():
         videoLink, user, videoCover, description = video_info["videoLink"], video_info["user"], video_info["videoCover"], video_info["description"]
         path = tiktok.download(videoLink, user, "videos")["video_path"]
 
-        videoDb.add_video({"user": user, "videoLink":videoLink, "videoCover": videoCover, "description": description, "videoPath": path})
+        videoDb.add_video({"user": user, "videoLink": videoLink, "videoCover": videoCover, "description": description, "videoPath": path})
 
         return jsonify({'status': 'ok', 'message': 'successfuly downloaded'})
 
@@ -47,9 +49,7 @@ def all_downloaded():
     videos = videoDb.show_videos()
     videos.reverse()
 
-    if len(videos) > 0:
-        return jsonify({'status': 'ok', 'videos': videos})
-    return jsonify({'status': 'error'})
+    return jsonify({'status': 'ok', 'videos': videos}) if len(videos) > 0 else jsonify({'status': 'error'})
 
 @app.route('/api/remove-video')
 def remove_video():
@@ -61,6 +61,15 @@ def remove_video():
     
 
     return jsonify({'status': 'ok'})    
+
+@app.route('/api/tags-suggestions')
+def tag_suggestions():
+
+    query = request.args.get('query')
+    tags = Tags.show_tags(query)
+
+    return jsonify({'status': 'ok', 'tags': tags})
+
 
 if "__main__" == __name__:
     app.run(port=3333, debug=True)
