@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/aldisonll/DOWNLOAD-AND-UPLOAD-TIKTOK-TO-YOUTUBE/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Download TikTok Videos & Upload them to YouTube
+A web-based automation tool (with a lot of features 🔥) to download videos from TikTok and upload those videos to YouTube.
+### Features
+1. Remove video from the dashboard 🗑️
+1. Generate tags for YouTube Video (SEO 🔍)
+2. Set a custom Title before Uploading ☑
+3. Create the description itself 🖊
+4. Give credit to the creator of TikTok Video ©️
+### Preview 
+![image](https://user-images.githubusercontent.com/34491203/144125194-d2fd9b0a-36e5-408a-87fb-dc5149c314d4.png)
+![image](https://user-images.githubusercontent.com/34491203/144125338-396f1e82-1c80-425c-84c1-29af21455ce1.png)
+### Installation
+```bash
+git clone https://github.com/aldisonll/DOWNLOAD-AND-UPLOAD-TIKTOK-TO-YOUTUBE.git
 ```
+```bash
+cd DOWNLOAD-AND-UPLOAD-TIKTOK-TO-YOUTUBE && pip install -r requirements.txt 
+```
+### Start the tool 🚀
+```bash
+cd tests/server && python flask-server.py
+```
+### Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/aldisonll/DOWNLOAD-AND-UPLOAD-TIKTOK-TO-YOUTUBE/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Please make sure to update tests as appropriate.
+### License
+[MIT](https://github.com/aldisonll/DOWNLOAD-AND-UPLOAD-TIKTOK-TO-YOUTUBE/blob/main/LICENSE)
