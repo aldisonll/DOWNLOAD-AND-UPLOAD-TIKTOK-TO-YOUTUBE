@@ -58,7 +58,6 @@ def remove_video():
 
     videoDb = VideoDB('VideoDB.db')
     videoDb.delete_video(videoId)  
-    
 
     return jsonify({'status': 'ok'})    
 

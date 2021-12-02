@@ -45,7 +45,7 @@ function showDowloadedVideos(){
                    <h5 tags>${video[4]}</h5>
                    <img cover src="${video[3]}">
                    <div actions>
-                    <button onclick=showYoutubeModal("${video[0]}") upload>Upload to Youtube</button> <button onclick=removeVideo(${video[0]}) remove>Remove from DB</button>
+                    <button onclick=showYoutubeModal("${video[0]}") upload>Upload to Youtube</button> <button onclick=removeVideo(${video[0]}) remove>Remove Video</button>
                    </div>
                 <div>
                 `
