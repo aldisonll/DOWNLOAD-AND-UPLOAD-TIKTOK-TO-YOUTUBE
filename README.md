@@ -6,6 +6,7 @@ A web-based automation tool (with a lot of features 🔥) to download videos fro
 2. Set a custom Title before Uploading ☑
 3. Create the description itself 🖊
 4. Give credit to the creator of TikTok Video ©️
+5. Without watermark (no third-party API) ✔ 
 ### Preview 
 ![image](https://user-images.githubusercontent.com/34491203/144125194-d2fd9b0a-36e5-408a-87fb-dc5149c314d4.png)
 ![image](https://user-images.githubusercontent.com/34491203/144125338-396f1e82-1c80-425c-84c1-29af21455ce1.png)
