@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
+
 import sys
+from threading import Thread
 
 app = Flask(__name__,
             template_folder='../public/template',
@@ -11,6 +13,7 @@ sys.path.insert(0,'../..') # parent-parent path
 from tikTokDownloader import TikTokDownloader
 from VideoDb import VideoDB
 from youtubeSearchSuggestions import YouTubeTagGenerator
+from youtubeUploader import upload
 
 tiktok = TikTokDownloader()
 Tags = YouTubeTagGenerator()
@@ -69,6 +72,16 @@ def tag_suggestions():
 
     return jsonify({'status': 'ok', 'tags': tags})
 
+@app.route('/api/upload-video')
+def upload_video():
+
+    file = request.args.get('file') 
+    title = request.args.get('title') 
+    description = request.args.get('description') 
+    keywords = request.args.get('keywords')
+    
+    Thread(target=upload,kwargs={'file': file, 'title': title, 'description': description, 'keywords': keywords}).start()
+    return "done"
 
 if "__main__" == __name__:
     app.run(port=3333, debug=True)

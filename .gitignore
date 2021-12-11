@@ -2,3 +2,4 @@ __pycache__/
 *.db
 tests/videos/
 tests/server/videos/
+client_secret.json

@@ -1,8 +1,6 @@
 const $ = (sel) => document.querySelector(sel)
 const $$ = (sel) => document.querySelectorAll(sel)
 
-const apiUrl = `${window.location.protocol}//${window.location.host}`
-
 showDowloadedVideos()
 
 $('[btn]').addEventListener('click', (x)=>{
@@ -10,7 +8,7 @@ $('[btn]').addEventListener('click', (x)=>{
     $('[info]>p').innerText = ''
     x.target.innerText = 'Downloading...'
 
-    fetch(`${apiUrl}/api/download-video?url=${$('[inp]').value}`).then(
+    fetch(`/api/download-video?url=${$('[inp]').value}`).then(
         data => data.json()
     ).then(response => {
         x.target.innerText = 'Download'
@@ -32,7 +30,7 @@ $('[btn]').addEventListener('click', (x)=>{
 
 function showDowloadedVideos(){
 
-    fetch(`${apiUrl}/api/all-downloaded`).then(
+    fetch(`/api/all-downloaded`).then(
         data => data.json()
     ).then(response => {
         if(response.status == "ok"){
@@ -41,6 +39,7 @@ function showDowloadedVideos(){
                 $('[video-holder]').innerHTML +=  `
 
                 <div video id="${video[0]}">
+                   <p hidden videoPath=${video[5]}></p>
                    <h4 credit>by <a target="_blank" href="https://www.tiktok.com/@${video[1]}">${video[1]}</a></h4>
                    <h5 tags>${video[4]}</h5>
                    <img cover src="${video[3]}">
@@ -165,7 +164,7 @@ function showYoutubeModal(id){
                     <h4>tags</h4><button style="${gen_tags_style}" onclick=generateTags() gen-tags>Generate Tags</button>
                 </div>
                 <input style="${tags_style}" tags placeholder="#tag1 #tag2" type="text"/>
-                <button style="${final_upload_style}" onmouseover="${final_upload_mouseOver_style}" onmouseout="${final_upload_mouseOut_style}" final-upload>Upload Video ✔</button>
+                <button style="${final_upload_style}" onmouseover="${final_upload_mouseOver_style}" onmouseout="${final_upload_mouseOut_style}" onclick=upload(${id}) final-upload>Upload Video ✔</button>
             </div>
         </div>
     `
@@ -179,7 +178,7 @@ function removeVideo(id){
 
     $$(`[id='${id}']>div>button`)[1].innerText = 'Removing...'
     
-    fetch(`${apiUrl}/api/remove-video?id=${id}`).then(
+    fetch(`/api/remove-video?id=${id}`).then(
         data => data.json()
     ).then(response => {
         if(response.status == "ok"){
@@ -195,7 +194,7 @@ function generateTags(){
 
     if(inputTagVal.length > 0 && inputTagVal.replaceAll(' ', '').length > 0){
         $('[gen-tags]').innerText = 'Generating Tags...'
-        fetch(`${apiUrl}/api/tags-suggestions?query=${inputTagVal}`).then(
+        fetch(`/api/tags-suggestions?query=${inputTagVal}`).then(
             data => data.json()
         ).then(response => {
             if(response.status == "ok"){
@@ -212,4 +211,17 @@ function generateTags(){
         })
     }
     
+}
+
+function upload(id){
+    const videoPath = $$(`[id='${id}']>[videoPath]`)[0].getAttribute('videoPath')
+    const title = $('[modal-body]>[title]').value || 'title'
+    const description = $('[modal-body]>[description]').value || ''
+    const keywords = $('[modal-body]>[tags]').value || ''
+    
+    alert("Go and make the google authorization through CLI")
+
+    changeBackGroundBlur()
+
+    fetch(`/api/upload-video?file=${videoPath}&title=${title}&description=${description}&keywords=${keywords}`)
 }

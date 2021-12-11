@@ -22,7 +22,7 @@ cd DOWNLOAD-AND-UPLOAD-TIKTOK-TO-YOUTUBE && pip install -r requirements.txt
 cd tests/server && python flask-server.py
 ```
 ### #TO-DO
-1. Upload videos to youtube ❌ (probably I'll use automatic browser, not the YT API)
+1. Upload videos to youtube ❌ 
 ### Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
