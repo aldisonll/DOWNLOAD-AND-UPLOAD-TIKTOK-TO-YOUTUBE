@@ -1,3 +1,7 @@
-Flask==2.0.1
 fake_useragent==0.1.11
+Flask==2.0.2
+google_api_python_client==2.33.0
+google_auth_oauthlib==0.4.6
+httplib2==0.20.2
+protobuf==3.19.1
 requests==2.26.0
